@@ -1,0 +1,1 @@
+Shop_E-commerce is a full-stack e-commerce platform where users can browse, search for products, and make purchases. It includes features for user authentication, product management, and order processing.
