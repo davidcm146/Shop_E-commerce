@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import formatCurrency from '../helper/currencyChange';
 import Context from '../context/AuthContext';
 import { MdDelete } from "react-icons/md";
+import {loadStripe} from "@stripe/stripe-js"
 
 const Cart = () => {
     const [data, setData] = useState([]);
@@ -87,9 +88,29 @@ const Cart = () => {
     const totalQty = data.reduce((prev, current) => prev + current.quantity, 0)
     const totalPrice = data.reduce((prev, current) => prev + (current.quantity * current?.productId?.price), 0);
 
-    const handleLoading = async() => {
+    const handleLoading = async () => {
         await fetchCartProduct()
-    } 
+    }
+
+    const handlePayment = async () => {
+        const stripePromise = await loadStripe(import.meta.env.VITE_PUBLIC_STRIPE_KEY);
+        const response = await fetch(summaryURL.payment.url, {
+            method : summaryURL.payment.method,
+            credentials : "include",
+            headers : {
+                "content-type" : "application/json"
+            },
+            body : JSON.stringify({
+                cartItems : data
+            })
+        })
+        
+        const result = await response.json();
+        console.log(result)
+        if (result?.id){
+            stripePromise.redirectToCheckout({sessionId : result.id});
+        }
+    }
 
     useEffect(() => {
         setLoading(true);
@@ -97,7 +118,7 @@ const Cart = () => {
         setLoading(false);
     }, []);
 
-    
+
 
     return (
         <div className='container mx-auto p-4'>
@@ -148,28 +169,32 @@ const Cart = () => {
                         )
                     }
                 </div>
-                <div className="mx-8 pt-3 mt-6 lg:mt-0 w-full max-w-sm">
-                    {
-                        loading ? (
-                            <div className="h-36 bg-slate-200 border rounded border-slate-300 animate-pulse"></div>
-                        ) : (
-                            <div className="h-36 bg-slate-200 border rounded border-slate-300">
-                                <h2 className='text-white text-xl text-semibold bg-blue-600 px-4 py-3'>Summary</h2>
-                                <div className="flex items-center justify-between mt-2 px-4 gap-2 font-medium text-lg text-slate-600">
-                                    <p>Quantity: </p>
-                                    <p> {totalQty}</p>
-                                </div>
+                {
+                    data[0] && (
+                        <div className="mx-8 pt-3 mt-6 lg:mt-0 w-full max-w-sm">
+                            {
+                                loading ? (
+                                    <div className="h-36 bg-slate-200 border rounded border-slate-300 animate-pulse"></div>
+                                ) : (
+                                    <div className="h-36 bg-slate-200 border rounded border-slate-300">
+                                        <h2 className='text-white text-xl text-semibold bg-blue-600 px-4 py-3'>Summary</h2>
+                                        <div className="flex items-center justify-between mt-2 px-4 gap-2 font-medium text-lg text-slate-600">
+                                            <p>Quantity: </p>
+                                            <p> {totalQty}</p>
+                                        </div>
 
-                                <div className="mt-2 flex items-center justify-between px-4 gap-2 font-medium text-lg text-slate-600">
-                                    <p>Total price: </p>
-                                    <p>{formatCurrency(totalPrice)}</p>
-                                </div>
+                                        <div className="mt-2 flex items-center justify-between px-4 gap-2 font-medium text-lg text-slate-600">
+                                            <p>Total price: </p>
+                                            <p>{formatCurrency(totalPrice)}</p>
+                                        </div>
 
-                                <button className='bg-blue-600 p-3 mt-5 hover:bg-blue-400 text-white w-full rounded'>PURCHASE</button>
-                            </div>
-                        )
-                    }
-                </div>
+                                        <button onClick={handlePayment} className='bg-blue-600 p-3 mt-5 hover:bg-blue-400 text-white w-full rounded'>PURCHASE</button>
+                                    </div>
+                                )
+                            }
+                        </div>
+                    )
+                }
             </div>
         </div>
     );

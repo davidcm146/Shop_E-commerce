@@ -77,6 +77,11 @@ const summaryURL = {
         url: `${commonURL}/filter-product`,
         method: "post"
     },
+    payment: {
+        url: `${commonURL}/checkout`,
+        method: "post"
+    },
+    
 }
 
 export default summaryURL
