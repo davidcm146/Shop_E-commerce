@@ -102,11 +102,18 @@ const Header = () => {
                 </nav>
               </div>)}
 
+              {user?.role === ROLE.CUSTOMER && (
+              <div className="absolute top-10 h-fit p-2 bg-white shadow-lg rounded hidden group-hover:block">
+                <nav>
+                  <Link to={"/order"} className='whitespace-nowrap hover:bg-slate-200 p-2 w-full h-full rounded md:block'>Order</Link>
+                </nav>
+              </div>)}
+
 
 
           </div>
           {
-            user && (
+            user && user?.role === ROLE.CUSTOMER && (
               <Link to={"/cart"} className="text-3xl relative">
                 <span><FaShoppingCart /></span>
                 <div className="absolute top-3 -right-4 bg-red-600 text-white w-5 p-1 flex items-center justify-center rounded-full">

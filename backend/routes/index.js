@@ -24,6 +24,7 @@ const searchProductController = require("../controllers/product/searchProduct.c"
 const filterProductController = require("../controllers/product/filterProduct.c");
 const paymentController = require("../controllers/order/payment.c");
 const webhookController = require("../controllers/order/webhook.c");
+const getOrdersController = require("../controllers/order/getOrders.c");
 
 // Users
 router.post("/sign-up", signUpController)
@@ -57,5 +58,6 @@ router.post("/add-to-cart", authToken, addToCartController)
 // Payment
 router.post("/checkout", authToken, paymentController)
       .post("/webhook", webhookController)
+      .get("/order", authToken, getOrdersController)
 
 module.exports = router;
