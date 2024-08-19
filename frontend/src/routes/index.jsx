@@ -62,11 +62,11 @@ const router = createBrowserRouter([
                 element: <SearchResultDisplay/>        
             },
             {
-                path: "/success",
+                path: "success",
                 element: <SuccessPayment/>      
             },
             {
-                path: "/cancel",
+                path: "cancel",
                 element: <CancelPayment/>   
             },
             {
