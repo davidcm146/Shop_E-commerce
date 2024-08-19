@@ -42,7 +42,7 @@ const summaryURL = {
         method: "get"
     },
     wiseProduct: {
-        url: `${commonURL}/wise-product/:category`,
+        url: `${commonURL}/wise-product`,
         method: "post"
     },
     productDetails: {

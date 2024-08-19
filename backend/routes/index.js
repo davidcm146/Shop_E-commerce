@@ -43,7 +43,7 @@ router.post("/upload-product", authToken, uploadProductsController)
 
 // Products
 router.get("/get-category", getCategoryController)
-      .post("/wise-product/:category", getCategoryWiseProductController)
+      .post("/wise-product", getCategoryWiseProductController)
       .post("/product-detail/:id", getProductDetailsController)
       .get('/search', searchProductController)
       .post('/filter-product', filterProductController);
