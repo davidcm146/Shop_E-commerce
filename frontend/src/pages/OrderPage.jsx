@@ -33,7 +33,7 @@ const OrderPage = () => {
           data.map((order, index) => {
             return (
               <div key={index} className="">
-                <p className='mt-2 font-medium text-lg'>{moment(order.createdAt).format('LL')}</p>
+                <p className='mt-2 font-medium text-lg'>{moment(order.createdAt).format('MMMM Do YYYY, h:mm:ss A')}</p>
                 <div className="mt-3 border border-slate-400 rounded p-4">
                   <div className="flex justify-between flex-col lg:flex-row">
                     <div className="grid gap-1">

@@ -85,6 +85,10 @@ const summaryURL = {
         url: `${commonURL}/order`,
         method: "get"
     },
+    manageOrders : {
+        url: `${commonURL}/all-orders`,
+        method: "get"
+    }
     
 }
 

@@ -20,6 +20,7 @@ import SearchResultDisplay from '../pages/SearchResultDisplay';
 import SuccessPayment from '../pages/SuccessPayment';
 import CancelPayment from '../pages/CancelPayment';
 import OrderPage from '../pages/OrderPage';
+import AllOrders from '../pages/AllOrders';
 
 const router = createBrowserRouter([
     {
@@ -84,8 +85,11 @@ const router = createBrowserRouter([
                     {
                         path: "all-products",
                         element: <AllProducts/>
-                    }
-                    
+                    },
+                    {
+                        path: "all-orders",
+                        element: <AllOrders/>
+                    }  
                 ]
             }
             ,
