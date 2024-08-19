@@ -21,10 +21,10 @@ const OrderPage = () => {
     fetchOrders()
   }, [])
   return (
-    <div>
+    <div className='text-center text-lg'>
       {
         !data[0] && (
-          <p>No order available</p>
+          <p className='bg-white py-5'>No order available</p>
         )
       }
 
