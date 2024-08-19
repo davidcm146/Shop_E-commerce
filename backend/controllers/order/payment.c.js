@@ -4,7 +4,7 @@ const userModel = require("../../models/userModel")
 const paymentController = async(req, res) => {
     try {
         const {cartItems} = req.body;
-        const user = userModel.findOne({_id : req.userId})
+        const user = await userModel.findOne({_id : req.userId})
         const params = {
             submit_type : 'pay',
             mode : 'payment',
