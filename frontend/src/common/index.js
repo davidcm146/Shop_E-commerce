@@ -1,4 +1,4 @@
-const commonURL = import.meta.env.VITE_BACKEND_DOMAIN;
+const commonURL = import.meta.env.VITE_BACKEND_DOMAIN + "/api"; 
 
 const summaryURL = {
     signUp: {
