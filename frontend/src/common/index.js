@@ -1,4 +1,4 @@
-const commonURL = 'http://localhost:5500/api';
+const commonURL = import.meta.env.VITE_BACKEND_DOMAIN;
 
 const summaryURL = {
     signUp: {
