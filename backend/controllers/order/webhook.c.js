@@ -65,7 +65,7 @@ const webhookController = async (req, res) => {
       const order = new orderModel(orderDetails);
       const saveOrder = await order.save();
       if (saveOrder?._id){
-        const deleteProductInCart = await cartProductModel.deleteMany({userId : session.metadata.userId, })
+        const deleteProductInCart = await cartProductModel.deleteMany({userId : session.metadata.userId })
       }
       break;
     // ... handle other event types

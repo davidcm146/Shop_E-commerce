@@ -82,7 +82,7 @@ const UploadProducts = ({ onClose, calFunc }) => {
     };
 
     return (
-        <div className="fixed inset-0 flex justify-center items-center z-10 bg-gray-800 bg-opacity-50">
+        <div className="fixed inset-0 flex justify-center items-center z-50 bg-gray-800 bg-opacity-50">
             <div className="relative p-4 w-full max-w-xl max-h-full">
                 <div className="relative bg-white rounded-lg shadow-lg">
                     <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-gray-200">
